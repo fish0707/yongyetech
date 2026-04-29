@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>詠業科技行銷有限公司｜企業印表機租賃首選解決方案</title>
+  <meta name="description" content="詠業科技行銷有限公司｜提供黑白、彩色印表機租賃、多功能事務機出租、定期保養維修、碳粉耗材配送，打造企業高效辦公環境，降低成本提升效率。"/>
+  <meta name="keywords" content="印表機租賃,事務機出租,影印機租賃,辦公設備租賃,碳粉補充,印表機維修,企業辦公解決方案,驅動程式下載"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Rajdhani:wght@500;600;700&family=Space+Mono:wght@400;700&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    /* ════════════════════════════════════════
+       TOKENS & RESET
+    ════════════════════════════════════════ */
+    :root {
+      --ink:      #0a0f1e;
+      --navy:     #0d1b3e;
+      --blue:     #1a56db;
+      --accent:   #00c9ff;
+      --sky:      #3b82f6;
+      --green:    #10b981;
+      --mid:      #8892a4;
+      --white:    #ffffff;
+      --card-bg:  #111827;
+      --border:   rgba(26,86,219,0.25);
+      /* driver section light tokens */
+      --ds-bg:      #f4f6fb;
+      --ds-surface: #ffffff;
+      --ds-text:    #0f172a;
+      --ds-muted:   #64748b;
+      --ds-border:  #e2e8f0;
+      --ds-pill:    #eff6ff;
+      --ds-sky:     #3b82f6;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--ink);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 68px;
+      background: rgba(10,15,30,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .logo {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.5rem; font-weight: 700; letter-spacing: 2px;
+      color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.4px;
+      transition: color 0.2s; white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links .nav-driver {
+      color: var(--accent);
+      border: 1px solid rgba(0,201,255,0.4);
+      border-radius: 6px; padding: 4px 12px;
+      font-size: 0.82rem; font-weight: 600;
+    }
+    .nav-links .nav-driver:hover { background: rgba(0,201,255,0.1); }
+    .nav-cta {
+      background: var(--blue); color: #fff; border: none;
+      padding: 0.48rem 1.3rem; border-radius: 6px;
+      font-size: 0.86rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      font-family: 'Noto Sans TC', sans-serif; white-space: nowrap;
+    }
+    .nav-cta:hover { background: #1a4bc9; box-shadow: 0 0 20px rgba(26,86,219,0.5); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background:none; border:none; }
+    .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; display:block; }
+    @media(max-width:900px){
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 100px 5vw 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(0,201,255,0.8) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,201,255,0.8) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; }
+    .orb1 { width: 600px; height: 600px; background: rgba(26,86,219,0.25); top: -100px; right: -100px; }
+    .orb2 { width: 400px; height: 400px; background: rgba(0,201,255,0.12); bottom: 50px; left: -100px; }
+    .hero-content { position: relative; z-index: 2; max-width: 680px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(26,86,219,0.2); border: 1px solid rgba(26,86,219,0.5);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 0.8rem; color: var(--accent); font-weight: 500;
+      margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 900; line-height: 1.18; margin-bottom: 1.2rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-title .hl {
+      background: linear-gradient(90deg, var(--accent), var(--blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--mid); line-height: 1.8;
+      margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), #1240b0);
+      color: #fff; border: none; padding: 0.85rem 2rem;
+      border-radius: 8px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Noto Sans TC', sans-serif;
+      box-shadow: 0 4px 24px rgba(26,86,219,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,86,219,0.6); }
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3); padding: 0.85rem 2rem;
+      border-radius: 8px; font-size: 1rem; font-weight: 600;
+      cursor: pointer; transition: border-color 0.2s, color 0.2s;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; animation: fadeUp 0.7s 0.4s ease both; }
+    .stat-num { font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: 0.8rem; color: var(--mid); }
+
+    /* ════════════════════════════════════════
+       COMMON SECTION STYLES
+    ════════════════════════════════════════ */
+    section { padding: 90px 5vw; }
+    .section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem; color: var(--accent); letter-spacing: 3px;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; line-height: 1.3; margin-bottom: 1rem; }
+    .section-sub { color: var(--mid); font-size: 1rem; line-height: 1.8; max-width: 600px; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ════════════════════════════════════════
+       TRUST STRIP
+    ════════════════════════════════════════ */
+    .trust-strip {
+      background: #0a0f1e; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 2.5rem 5vw;
+      display: flex; align-items: center; justify-content: space-around; gap: 2rem; flex-wrap: wrap;
+    }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+    .trust-label { font-size: 0.8rem; color: var(--mid); }
+    .trust-val { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--white); }
+
+    /* ════════════════════════════════════════
+       SERVICES
+    ════════════════════════════════════════ */
+    #services { background: #0c1222; }
+    .services-header { margin-bottom: 3.5rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .service-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+      transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { border-color: rgba(26,86,219,0.6); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(26,86,219,0.15); border: 1px solid rgba(26,86,219,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.2rem;
+    }
+    .service-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .service-desc { color: var(--mid); font-size: 0.9rem; line-height: 1.7; }
+    .service-link { color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-top: 1rem; display: inline-block; text-decoration: none; }
+
+    /* ════════════════════════════════════════
+       PRICING
+    ════════════════════════════════════════ */
+    .pricing-header { text-align: center; margin-bottom: 3.5rem; }
+    .pricing-header .section-sub { margin: 0 auto; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; align-items: start; }
+    .price-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.5rem 2rem; position: relative; overflow: hidden;
+    }
+    .price-card.featured {
+      border-color: var(--blue);
+      background: linear-gradient(160deg, #0d1b3e 0%, #111827 100%);
+      box-shadow: 0 0 40px rgba(26,86,219,0.25);
+    }
+    .featured-badge {
+      position: absolute; top: 18px; right: 18px;
+      background: var(--blue); color: #fff;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+      padding: 4px 12px; border-radius: 100px;
+    }
+    .plan-name { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 600; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .plan-desc { color: var(--mid); font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .plan-price { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; line-height: 1; margin-bottom: 0.3rem; }
+    .plan-price sub { font-size: 1rem; font-weight: 500; color: var(--mid); vertical-align: bottom; }
+    .plan-note { font-size: 0.78rem; color: var(--mid); margin-bottom: 2rem; }
+    .plan-features { list-style: none; margin-bottom: 2rem; }
+    .plan-features li {
+      font-size: 0.88rem; color: rgba(255,255,255,0.85);
+      padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .plan-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .btn-plan { width: 100%; padding: 0.85rem; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s; }
+    .btn-plan-outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
+    .btn-plan-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-plan-solid { background: var(--blue); color: #fff; border: none; box-shadow: 0 4px 20px rgba(26,86,219,0.4); }
+    .btn-plan-solid:hover { background: #1a4bc9; box-shadow: 0 6px 28px rgba(26,86,219,0.6); transform: translateY(-1px); }
+
+    /* ════════════════════════════════════════
+       CASES
+    ════════════════════════════════════════ */
+    #cases { background: #0c1222; }
+    .cases-header { margin-bottom: 3.5rem; }
+    .cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .case-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .case-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+    .case-img { height: 160px; background: linear-gradient(135deg, var(--navy), #162040); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; border-bottom: 1px solid var(--border); }
+    .case-body { padding: 1.5rem; }
+    .case-type { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .case-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .case-desc { color: var(--mid); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1rem; }
+    .case-metrics { display: flex; gap: 1rem; }
+    .metric { text-align: center; }
+    .metric-val { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+    .metric-key { font-size: 0.72rem; color: var(--mid); }
+
+    /* ════════════════════════════════════════
+       ABOUT
+    ════════════════════════════════════════ */
+    #about { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    @media(max-width:768px){ #about { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .about-visual {
+      background: linear-gradient(135deg, #0d1b3e, #111827);
+      border: 1px solid var(--border); border-radius: 20px; padding: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .about-glow { position: absolute; width: 300px; height: 300px; background: rgba(26,86,219,0.2); border-radius: 50%; filter: blur(80px); top: -50px; right: -50px; pointer-events: none; }
+    .about-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; position: relative; z-index: 1; }
+    .about-stat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; }
+    .as-num { font-family: 'Rajdhani', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--accent); }
+    .as-label { font-size: 0.8rem; color: var(--mid); margin-top: 0.2rem; }
+    .about-text .advantages { margin-top: 2rem; list-style: none; }
+    .about-text .advantages li { display: flex; align-items: flex-start; gap: 12px; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: rgba(255,255,255,0.85); }
+    .adv-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* ════════════════════════════════════════
+       FAQ
+    ════════════════════════════════════════ */
+    #faq { background: #0c1222; }
+    .faq-header { text-align: center; margin-bottom: 3rem; }
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--white);
+      font-family: 'Noto Sans TC', sans-serif; font-size: 0.98rem; font-weight: 600;
+      text-align: left; padding: 1.3rem 0; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .faq-arrow { color: var(--accent); font-size: 1.1rem; transition: transform 0.3s; flex-shrink: 0; }
+    .faq-a { color: var(--mid); font-size: 0.9rem; line-height: 1.8; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s; }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.2rem; }
+    .faq-item.open .faq-arrow { transform: rotate(45deg); }
+
+    /* ════════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════════ */
+    #contact { background: linear-gradient(160deg, #0a0f1e 0%, #0d1b3e 100%); text-align: center; }
+    .contact-inner { max-width: 800px; margin: 0 auto; }
+    .contact-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: 1rem; }
+    .contact-sub { color: var(--mid); margin-bottom: 3rem; line-height: 1.8; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+    @media(max-width:600px){ .contact-grid { grid-template-columns: 1fr; } }
+    .contact-input {
+      width: 100%; background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 0.9rem 1.2rem; color: var(--white);
+      font-family: 'Noto Sans TC', sans-serif; font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .contact-input:focus { outline: none; border-color: var(--blue); }
+    .contact-input::placeholder { color: var(--mid); }
+    .contact-textarea { grid-column: 1 / -1; resize: none; height: 130px; }
+    .contact-submit {
+      background: linear-gradient(135deg, var(--blue), #1240b0);
+      color: #fff; border: none; padding: 1rem 3rem;
+      border-radius: 8px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; font-family: 'Noto Sans TC', sans-serif;
+      box-shadow: 0 4px 24px rgba(26,86,219,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,86,219,0.6); }
+    .contact-channels { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+    .channel {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.75rem 1.2rem;
+      color: rgba(255,255,255,0.8); font-size: 0.85rem; font-weight: 500;
+      text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    }
+    .channel:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    footer {
+      background: #060a14; padding: 3rem 5vw;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { color: var(--mid); font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--mid); font-size: 0.8rem; text-decoration: none; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ════════════════════════════════════════
+       FLOATING CTA
+    ════════════════════════════════════════ */
+    .floating-cta {
+      position: fixed; bottom: 28px; right: 28px; z-index: 998;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      color: #fff; border: none; width: 58px; height: 58px;
+      border-radius: 50%; font-size: 1.5rem; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(26,86,219,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .floating-cta:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(26,86,219,0.7); }
+
+    /* ════════════════════════════════════════
+       ★ DRIVER SUPPORT SECTION (light panel)
+    ════════════════════════════════════════ */
+    #driver-support {
+      background: var(--ds-bg);
+      color: var(--ds-text);
+      padding: 0;
+    }
+
+    /* Section header strip (dark, matches site) */
+    .ds-header-strip {
+      background: linear-gradient(135deg, var(--navy) 0%, #162860 100%);
+      padding: 60px 5vw 64px;
+      position: relative; overflow: hidden;
+    }
+    .ds-header-strip::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .ds-header-inner { position: relative; z-index: 1; max-width: 680px; }
+    .ds-header-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(0,201,255,0.15); border: 1px solid rgba(0,201,255,0.4);
+      border-radius: 100px; padding: 5px 14px;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent);
+      letter-spacing: 1px; margin-bottom: 1.2rem;
+    }
+    .dot-live { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .ds-header-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 0.8rem;
+    }
+    .ds-header-title span { color: var(--accent); }
+    .ds-header-sub { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.75; }
+
+    /* Wizard container */
+    .ds-main { max-width: 900px; margin: 0 auto; padding: 52px 5vw 80px; }
+
+    /* ── TROUBLESHOOTER ── */
+    .ts-screen { display:none; animation: pageIn 0.3s ease; }
+    .ts-screen.active { display:block; }
+    @keyframes pageIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+
+    .ts-breadcrumb {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      color: #0ea5e9; letter-spacing: 1.5px; margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    }
+    .ts-breadcrumb span { opacity: 0.6; }
+    .ts-breadcrumb span:last-child { opacity: 1; color: var(--blue); }
+    .ts-breadcrumb span:not(:last-child)::after { content: ' ›'; margin-left: 6px; opacity: 0.4; }
+
+    .ts-home-title {
+      font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800;
+      color: var(--ds-text); margin-bottom: 0.5rem;
+    }
+    .ts-home-sub { color: var(--ds-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.7; }
+
+    /* Category grid */
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    @media(max-width:500px){ .cat-grid { grid-template-columns: 1fr 1fr; } }
+    .cat-card {
+      background: var(--ds-surface); border: 2px solid var(--ds-border);
+      border-radius: 16px; padding: 22px 16px 18px;
+      cursor: pointer; transition: all 0.22s;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+      text-align: left;
+    }
+    .cat-card:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(26,86,219,0.15); transform: translateY(-3px); }
+    .cat-icon { font-size: 1.8rem; line-height: 1; }
+    .cat-name { font-size: 0.95rem; font-weight: 700; color: var(--ds-text); }
+    .cat-desc { font-size: 0.75rem; color: var(--ds-muted); line-height: 1.5; }
+
+    /* Node card */
+    .node-card {
+      background: var(--ds-surface); border: 1px solid var(--ds-border);
+      border-radius: 20px; padding: 36px;
+      box-shadow: 0 4px 24px rgba(13,27,62,0.08);
+      margin-bottom: 16px;
+    }
+    .node-tag {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      color: #0ea5e9; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .node-title {
+      font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800;
+      color: var(--ds-text); margin-bottom: 0.5rem;
+    }
+    .node-desc { color: var(--ds-muted); font-size: 0.88rem; line-height: 1.75; margin-bottom: 1.8rem; }
+
+    /* Steps list */
+    .step-list { list-style: none; counter-reset: ts; margin-bottom: 1.5rem; }
+    .step-list li {
+      counter-increment: ts;
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 0; border-bottom: 1px solid var(--ds-border);
+      font-size: 0.9rem; color: #1e293b; line-height: 1.7;
+    }
+    .step-list li:last-child { border-bottom: none; }
+    .step-list li::before {
+      content: counter(ts);
+      display: flex; align-items: center; justify-content: center;
+      min-width: 28px; height: 28px; border-radius: 50%;
+      background: var(--ds-pill); color: var(--blue);
+      font-family: 'DM Mono', monospace; font-size: 0.78rem; font-weight: 700;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .step-list .step-note {
+      font-size: 0.78rem; color: var(--ds-muted);
+      background: #f8fafc; border-left: 3px solid #bae6fd;
+      padding: 6px 10px; border-radius: 0 6px 6px 0; margin-top: 6px; display: block;
+    }
+
+    /* Branch question */
+    .branch-title {
+      font-size: 1rem; font-weight: 700; color: var(--ds-text);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+    }
+    .branch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 0.5rem; }
+    @media(max-width:480px){ .branch-grid { grid-template-columns: 1fr; } }
+    .branch-btn {
+      background: var(--ds-surface); border: 2px solid var(--ds-border);
+      border-radius: 12px; padding: 14px 16px;
+      cursor: pointer; transition: all 0.22s; text-align: left;
+      font-family: 'Noto Sans TC', sans-serif; font-size: 0.88rem; font-weight: 600;
+      color: var(--ds-text); display: flex; align-items: center; gap: 10px;
+    }
+    .branch-btn:hover { border-color: var(--blue); background: var(--ds-pill); transform: translateY(-1px); }
+    .branch-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+    /* Resolved banner */
+    .resolved-banner {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px solid #6ee7b7; border-radius: 16px; padding: 28px;
+      margin-bottom: 16px; text-align: center;
+    }
+    .resolved-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .resolved-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: #065f46; margin-bottom: 0.3rem; }
+    .resolved-sub { font-size: 0.85rem; color: #047857; }
+
+    /* Driver download card */
+    .driver-card {
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border: 2px solid #bae6fd; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+    }
+    .driver-card-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--ds-text); margin-bottom: 0.4rem; }
+    .driver-card-sub { font-size: 0.82rem; color: var(--ds-muted); margin-bottom: 1.4rem; line-height: 1.6; }
+    .driver-os-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-bottom: 1.2rem; }
+    .driver-os-btn {
+      background: #fff; border: 1.5px solid #bae6fd;
+      border-radius: 10px; padding: 10px 8px; text-align: center;
+      cursor: pointer; transition: all 0.2s; font-family: 'Noto Sans TC', sans-serif;
+    }
+    .driver-os-btn:hover { border-color: var(--blue); background: var(--ds-pill); }
+    .driver-os-btn.selected { border-color: var(--blue); background: var(--ds-pill); }
+    .d-os-icon { font-size: 1.3rem; }
+    .d-os-name { font-size: 0.75rem; font-weight: 700; color: var(--ds-text); margin-top: 3px; }
+    .d-os-ver  { font-size: 0.65rem; color: var(--ds-muted); }
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff; border: none;
+      padding: 0.8rem 1.8rem; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      font-family: 'Noto Sans TC', sans-serif; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(26,86,219,0.35);
+      transition: all 0.2s; margin-right: 10px; margin-bottom: 8px;
+    }
+    .dl-btn:hover { background: #1745bf; transform: translateY(-1px); }
+    .dl-btn:disabled { background: var(--ds-border); color: var(--ds-muted); box-shadow:none; cursor:not-allowed; transform:none; }
+    .dl-btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--ds-text);
+      border: 2px solid var(--ds-border);
+      padding: 0.75rem 1.4rem; border-radius: 10px;
+      font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      transition: all 0.2s; margin-bottom: 8px;
+    }
+    .dl-btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* Warning box */
+    .warn-box {
+      background: #fffbeb; border: 1px solid #fde68a;
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 1.2rem;
+      font-size: 0.82rem; color: #92400e; line-height: 1.65;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+
+    /* Nav */
+    .btn-wiz-back {
+      background: none; border: 2px solid var(--ds-border); color: var(--ds-muted);
+      padding: 0.7rem 1.6rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s;
+    }
+    .btn-wiz-back:hover { border-color: var(--ds-muted); color: var(--ds-text); }
+    .restart-btn {
+      background: none; border: 2px solid var(--ds-border); color: var(--ds-muted);
+      padding: 0.65rem 1.5rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .restart-btn:hover { border-color: var(--ds-muted); color: var(--ds-text); }
+    .ts-nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: 0.8rem; }
+
+    /* Fallback */
+    .fallback-bar {
+      background: linear-gradient(90deg, #fef3c7, #fff7ed);
+      border: 1px solid #fed7aa; border-radius: 14px;
+      padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .fallback-text { font-size: 0.88rem; font-weight: 600; color: #92400e; }
+    .fallback-sub  { font-size: 0.78rem; color: #b45309; margin-top: 2px; }
+    .fallback-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+    .fallback-btn {
+      background: #fff; border: 1.5px solid #fed7aa; color: #92400e;
+      padding: 0.5rem 1.1rem; border-radius: 7px; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; font-family: 'Noto Sans TC', sans-serif; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .fallback-btn:hover { background: #fef3c7; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="main-nav">
+  <a class="logo" href="#hero">
+    <div class="logo-icon">🖨</div>
+    詠業科技行銷<span>有限公司</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">服務項目</a></li>
+    <li><a href="#pricing">租賃方案</a></li>
+    <li><a href="#cases">客戶案例</a></li>
+    <li><a href="#about">關於我們</a></li>
+    <li><a href="#driver-support" class="nav-driver">🛠 疑難排解</a></li>
+    <li><a href="#faq">常見問題</a></li>
+    <li><a href="#contact">聯絡我們</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">免費諮詢</button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="選單">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="badge-dot"></span>專業印表機租賃服務 · 全台服務</div>
+    <h1 class="hero-title">企業印表機租賃首選<br><span class="hl">降低成本，提升效率</span></h1>
+    <p class="hero-sub">提供黑白與彩色印表機租賃、多功能事務機出租、專業維修保養及耗材配送服務。讓您零設備壓力，專注核心業務，打造穩定高效的辦公環境。</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">立即免費諮詢</button>
+      <button class="btn-ghost" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">查看租賃方案</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">200+</div><div class="stat-label">企業合作客戶</div></div>
+      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">客戶滿意度</div></div>
+      <div class="stat"><div class="stat-num">24H</div><div class="stat-label">快速響應維修</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TRUST STRIP ══════════════ -->
+<div class="trust-strip">
+  <div class="trust-item"><div class="trust-icon">🏢</div><div class="trust-val">適合各類企業</div><div class="trust-label">診所・學校・辦公室・政府單位</div></div>
+  <div class="trust-item"><div class="trust-icon">🔧</div><div class="trust-val">到府快速維修</div><div class="trust-label">平均響應時間 4 小時內</div></div>
+  <div class="trust-item"><div class="trust-icon">📦</div><div class="trust-val">耗材定期補送</div><div class="trust-label">碳粉不斷、服務不停</div></div>
+  <div class="trust-item"><div class="trust-icon">💰</div><div class="trust-val">月租制零負擔</div><div class="trust-label">無需購買設備，成本可控</div></div>
+</div>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-tag">// SERVICES</div>
+    <h2 class="section-title">全方位辦公設備服務</h2>
+    <p class="section-sub">從設備出租到售後保養，一站式滿足企業所有辦公需求，讓您無後顧之憂。</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="service-icon">🖨️</div><div class="service-name">黑白印表機租賃</div><div class="service-desc">提供高速黑白雷射印表機，適合大量文件列印需求，月租制彈性，維修保養全包。</div><a href="#contact" class="service-link">了解方案 →</a></div>
+    <div class="service-card reveal"><div class="service-icon">🎨</div><div class="service-name">彩色印表機租賃</div><div class="service-desc">鮮豔清晰的彩色輸出，適合設計、簡報及行銷文宣，滿足多樣化印刷需求。</div><a href="#contact" class="service-link">了解方案 →</a></div>
+    <div class="service-card reveal"><div class="service-icon">📠</div><div class="service-name">多功能事務機出租</div><div class="service-desc">整合列印、掃描、複印、傳真四大功能，一台搞定辦公室所有文件處理需求。</div><a href="#contact" class="service-link">了解方案 →</a></div>
+    <div class="service-card reveal"><div class="service-icon">⚙️</div><div class="service-name">定期保養與快速維修</div><div class="service-desc">專業技師定期到府保養，故障報修 24 小時內響應，確保設備穩定運作不中斷。</div><a href="#contact" class="service-link">了解方案 →</a></div>
+    <div class="service-card reveal"><div class="service-icon">📦</div><div class="service-name">碳粉耗材定期補送</div><div class="service-desc">依使用量智慧預測，主動配送碳粉及耗材，省去採購煩惱，列印從不斷料。</div><a href="#contact" class="service-link">了解方案 →</a></div>
+    <div class="service-card reveal"><div class="service-icon">📋</div><div class="service-name">客製化企業解決方案</div><div class="service-desc">依企業規模、用量與預算量身訂制專屬方案，提供短租、長租彈性組合選擇。</div><a href="#contact" class="service-link">立即諮詢 →</a></div>
+  </div>
+</section>
+
+<!-- ══════════════ PRICING ══════════════ -->
+<section id="pricing">
+  <div class="pricing-header reveal">
+    <div class="section-tag">// PRICING</div>
+    <h2 class="section-title">透明定價，彈性方案</h2>
+    <p class="section-sub">三種方案滿足不同規模需求，所有方案均含設備、維修與保養費用，無隱藏收費。</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="plan-name">基本方案</div><div class="plan-desc">適合個人工作室 / 小型診所</div>
+      <div class="plan-price">$2,500<sub> / 月起</sub></div><div class="plan-note">最低合約期限 12 個月</div>
+      <ul class="plan-features">
+        <li>黑白雷射印表機 × 1 台</li><li>每月 5,000 張免費列印</li>
+        <li>碳粉補充服務（每季）</li><li>年度定期保養 × 1 次</li>
+        <li>工作日客服支援</li><li>故障 48 小時內響應</li>
+      </ul>
+      <button class="btn-plan btn-plan-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">立即詢價</button>
+    </div>
+    <div class="price-card featured reveal">
+      <div class="featured-badge">最熱門</div>
+      <div class="plan-name">商務方案</div><div class="plan-desc">適合中型辦公室 / 學校</div>
+      <div class="plan-price">$5,800<sub> / 月起</sub></div><div class="plan-note">最低合約期限 12 個月</div>
+      <ul class="plan-features">
+        <li>黑白 + 彩色各 1 台</li><li>每月 15,000 張免費列印</li>
+        <li>碳粉補充服務（每月）</li><li>每半年定期保養 × 1 次</li>
+        <li>全天候客服支援</li><li>故障 24 小時內到府維修</li>
+        <li>掃描雲端整合設定</li>
+      </ul>
+      <button class="btn-plan btn-plan-solid" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">立即申請</button>
+    </div>
+    <div class="price-card reveal">
+      <div class="plan-name">企業旗艦方案</div><div class="plan-desc">適合大型企業 / 政府單位</div>
+      <div class="plan-price">客製<sub> 報價</sub></div><div class="plan-note">方案依需求量身定制</div>
+      <ul class="plan-features">
+        <li>多台多功能事務機配置</li><li>無限量列印方案可選</li>
+        <li>耗材即時自動補送</li><li>每季定期保養維護</li>
+        <li>專屬客服經理</li><li>4 小時緊急維修到府</li>
+        <li>IT 系統整合服務</li><li>月使用報表分析</li>
+      </ul>
+      <button class="btn-plan btn-plan-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">聯絡洽詢</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CASES ══════════════ -->
+<section id="cases">
+  <div class="cases-header reveal">
+    <div class="section-tag">// CASE STUDIES</div>
+    <h2 class="section-title">客戶成功案例</h2>
+    <p class="section-sub">來自不同產業的合作夥伴，透過我們的服務大幅提升辦公效率與降低成本。</p>
+  </div>
+  <div class="cases-grid">
+    <div class="case-card reveal"><div class="case-img">🏥</div><div class="case-body"><div class="case-type">醫療診所</div><div class="case-title">台北某婦幼診所</div><div class="case-desc">導入多功能事務機租賃方案，取代老舊設備，病歷列印速度大幅提升，每月維護成本顯著下降。</div><div class="case-metrics"><div class="metric"><div class="metric-val">↓40%</div><div class="metric-key">月設備成本</div></div><div class="metric"><div class="metric-val">3x</div><div class="metric-key">列印效率</div></div><div class="metric"><div class="metric-val">0</div><div class="metric-key">設備故障次數</div></div></div></div></div>
+    <div class="case-card reveal"><div class="case-img">🏫</div><div class="case-body"><div class="case-type">教育機構</div><div class="case-title">新北某補習班</div><div class="case-desc">選擇商務方案，解決考卷大量列印需求，耗材定期配送讓老師再也不用煩惱碳粉耗盡問題。</div><div class="case-metrics"><div class="metric"><div class="metric-val">↓55%</div><div class="metric-key">耗材採購成本</div></div><div class="metric"><div class="metric-val">100%</div><div class="metric-key">設備稼動率</div></div><div class="metric"><div class="metric-val">5★</div><div class="metric-key">服務滿意度</div></div></div></div></div>
+    <div class="case-card reveal"><div class="case-img">🏢</div><div class="case-body"><div class="case-type">科技公司</div><div class="case-title">桃園某軟體開發公司</div><div class="case-desc">導入企業旗艦方案，搭配雲端掃描整合，大幅優化文件數位化流程，減少人力成本。</div><div class="case-metrics"><div class="metric"><div class="metric-val">↓60%</div><div class="metric-key">文件處理時間</div></div><div class="metric"><div class="metric-val">+30%</div><div class="metric-key">員工生產力</div></div><div class="metric"><div class="metric-val">24H</div><div class="metric-key">緊急維修響應</div></div></div></div></div>
+  </div>
+</section>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about">
+  <div class="about-text reveal">
+    <div class="section-tag">// ABOUT US</div>
+    <h2 class="section-title">您信賴的辦公設備夥伴</h2>
+    <p class="section-sub">我們深耕辦公設備租賃領域多年，以客戶需求為核心，提供靈活的租賃方案與可靠的售後服務。無論您是新創公司、傳統企業或政府單位，我們都能為您量身打造最合適的辦公解決方案。</p>
+    <ul class="advantages">
+      <li><span class="adv-icon">🎯</span><div><strong>專業顧問式服務</strong>——深入了解您的辦公需求，推薦最適合的設備與方案，避免浪費預算。</div></li>
+      <li><span class="adv-icon">🔄</span><div><strong>設備升級無負擔</strong>——合約期間可依需求升級設備，讓您永遠使用最新款機型。</div></li>
+      <li><span class="adv-icon">🛡️</span><div><strong>全程保固零風險</strong>——設備損壞由我們負責維修更換，費用全包，您只需安心使用。</div></li>
+      <li><span class="adv-icon">📊</span><div><strong>用量透明化管理</strong>——每月提供詳細列印用量報表，協助您優化辦公室資源配置。</div></li>
+    </ul>
+  </div>
+  <div class="about-visual reveal">
+    <div class="about-glow"></div>
+    <div class="about-stat-grid">
+      <div class="about-stat-card"><div class="as-num">10+</div><div class="as-label">年深耕服務經驗</div></div>
+      <div class="about-stat-card"><div class="as-num">200+</div><div class="as-label">企業合作客戶</div></div>
+      <div class="about-stat-card"><div class="as-num">500+</div><div class="as-label">台設備穩定服務中</div></div>
+      <div class="about-stat-card"><div class="as-num">98%</div><div class="as-label">客戶續約率</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ★ TROUBLESHOOTER ══════════════ -->
+<section id="driver-support">
+
+  <!-- Dark header strip -->
+  <div class="ds-header-strip">
+    <div class="ds-header-inner">
+      <div class="ds-header-tag"><span class="dot-live"></span> CUSTOMER SUPPORT CENTER</div>
+      <h2 class="ds-header-title">bizhub C364e<span> 疑難排解中心</span></h2>
+      <p class="ds-header-sub">選擇您遇到的問題類型，系統將一步一步引導您完成排解。<br>自助解決，不需等待，隨時可用。</p>
+    </div>
+  </div>
+
+  <!-- Troubleshooter area -->
+  <div class="ds-main">
+
+    <!-- HOME: Category picker -->
+    <div class="ts-screen active" id="ts-home">
+      <div class="ts-breadcrumb"><span>Konica Minolta bizhub C364e</span></div>
+      <div class="ts-home-title">您目前遇到什麼問題？</div>
+      <p class="ts-home-sub">請選擇最接近您狀況的問題類別，我們將一步步引導您解決。</p>
+      <div class="cat-grid">
+        <button class="cat-card" onclick="showNode('print-fail')">
+          <div class="cat-icon">🖨️</div>
+          <div class="cat-name">無法列印</div>
+          <div class="cat-desc">電腦傳送後沒有動靜、顯示離線</div>
+        </button>
+        <button class="cat-card" onclick="showNode('print-quality')">
+          <div class="cat-icon">🎨</div>
+          <div class="cat-name">列印品質異常</div>
+          <div class="cat-desc">顏色偏差、模糊、條紋、褪色</div>
+        </button>
+        <button class="cat-card" onclick="showNode('paper-jam')">
+          <div class="cat-icon">📄</div>
+          <div class="cat-name">卡紙 / 進紙異常</div>
+          <div class="cat-desc">卡紙、重複進紙、不進紙</div>
+        </button>
+        <button class="cat-card" onclick="showNode('scan-fail')">
+          <div class="cat-icon">📡</div>
+          <div class="cat-name">掃描 / 複印問題</div>
+          <div class="cat-desc">掃描無法傳送、複印空白</div>
+        </button>
+        <button class="cat-card" onclick="showNode('error-code')">
+          <div class="cat-icon">⚠️</div>
+          <div class="cat-name">螢幕顯示錯誤代碼</div>
+          <div class="cat-desc">機器顯示 C、J、SC 開頭代碼</div>
+        </button>
+        <button class="cat-card" onclick="showNode('toner')">
+          <div class="cat-icon">🖤</div>
+          <div class="cat-name">碳粉 / 耗材問題</div>
+          <div class="cat-desc">碳粉警告、更換後仍有提示</div>
+        </button>
+        <button class="cat-card" onclick="showNode('network')">
+          <div class="cat-icon">🌐</div>
+          <div class="cat-name">網路連線問題</div>
+          <div class="cat-desc">找不到印表機、IP 設定錯誤</div>
+        </button>
+        <button class="cat-card" onclick="showNode('driver-install')">
+          <div class="cat-icon">💾</div>
+          <div class="cat-name">安裝驅動程式</div>
+          <div class="cat-desc">新電腦設定、驅動下載安裝</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- DYNAMIC CONTENT AREA -->
+    <div id="ts-flow" style="display:none;">
+      <!-- Breadcrumb -->
+      <div class="ts-breadcrumb" id="ts-breadcrumb"></div>
+      <!-- Node content injected here -->
+      <div id="ts-node-content"></div>
+      <!-- Navigation -->
+      <div class="ts-nav-row">
+        <button class="btn-wiz-back" onclick="tsBack()">← 上一步</button>
+        <button class="restart-btn" onclick="tsRestart()">🔄 重新開始</button>
+      </div>
+      <!-- Always-visible escalation bar -->
+      <div class="fallback-bar" style="margin-top:1.5rem;">
+        <div>
+          <div class="fallback-text">🤔 問題仍未解決？</div>
+          <div class="fallback-sub">我們的技術人員隨時待命，提供遠端或到府協助。</div>
+        </div>
+        <div class="fallback-btns">
+          <a href="tel:0926554511" class="fallback-btn">📞 電話客服</a>
+          <a href="#contact" class="fallback-btn">💬 LINE 諮詢</a>
+          <a href="mailto:henrychen0211@gmail.com" class="fallback-btn">📧 Email</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /ds-main -->
+</section>
+
+<!-- ══════════════ FAQ ══════════════ -->
+<section id="faq">
+  <div class="faq-header reveal">
+    <div class="section-tag">// FAQ</div>
+    <h2 class="section-title">常見問題解答</h2>
+    <p class="section-sub">有任何疑問？我們整理了最常被詢問的問題，幫助您快速了解服務內容。</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">印表機租賃和購買相比，哪個比較划算？<span class="faq-arrow">+</span></button><div class="faq-a">租賃方式將設備費用轉為固定月租支出，無需一次投入大筆購機費用，且維修、保養、耗材費用均已包含在方案內，實際總持有成本通常比自行購買低 30–50%。更重要的是，設備折舊與汰換風險由我們承擔，您可安心使用最新款設備。</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">合約最短可以租多久？可以短租嗎？<span class="faq-arrow">+</span></button><div class="faq-a">長租方案最短合約期為 12 個月，費率最優惠。我們也提供短租服務，最短可以月計或週計，適合展覽、活動、季節性需求。短租費率會依期間調整，歡迎聯繫我們取得報價。</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">設備故障了如何處理？多久可以到場維修？<span class="faq-arrow">+</span></button><div class="faq-a">您可透過電話、LINE 或線上表單報修，我們承諾一般方案 48 小時內、商務與旗艦方案 24 小時內到府維修。若設備需送修，我們會提供備用機以確保您的辦公不中斷。</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">碳粉耗盡了怎麼辦？需要自己購買嗎？<span class="faq-arrow">+</span></button><div class="faq-a">不需要！我們的方案均含耗材補充服務，會依您的用量主動預測補送時間，您只需聯繫我們，碳粉便會直接送達。部分方案更提供自動偵測低碳粉並主動通知的智慧服務。</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">合約期間可以更換設備或升級型號嗎？<span class="faq-arrow">+</span></button><div class="faq-a">可以。如果您的業務規模擴大，需要更高效能的設備，我們可以在不中斷服務的前提下協助升級。升級後將依新設備型號重新計算月租費用，具體方式請洽我們的服務專員。</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">服務範圍涵蓋哪些地區？<span class="faq-arrow">+</span></button><div class="faq-a">目前主要服務範圍涵蓋大台北、桃園、新竹地區，並持續拓展服務版圖。若您位於其他縣市，歡迎聯繫我們評估服務可行性，我們將盡力為您安排。</div></div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <div class="section-tag" style="text-align:center">// CONTACT</div>
+    <div class="contact-title">準備好提升辦公效率了嗎？</div>
+    <p class="contact-sub">填寫下方表單，我們的專業顧問將在 1 個工作天內與您聯繫，<br>為您提供免費的設備需求評估與客製化報價。</p>
+    <div class="contact-grid">
+      <input class="contact-input" type="text" placeholder="公司 / 機構名稱 *"/>
+      <input class="contact-input" type="text" placeholder="聯絡人姓名 *"/>
+      <input class="contact-input" type="email" placeholder="電子信箱 *"/>
+      <input class="contact-input" type="tel" placeholder="聯絡電話 *"/>
+      <input class="contact-input" type="text" placeholder="員工人數 / 辦公規模"/>
+      <input class="contact-input" type="text" placeholder="有意了解的服務項目"/>
+      <textarea class="contact-input contact-textarea" placeholder="其他需求說明（選填）"></textarea>
+    </div>
+    <button class="contact-submit">送出諮詢申請</button>
+    <div class="contact-channels">
+      <a href="tel:0926554511" class="channel">📞 0926-554511</a>
+      <a href="mailto:henrychen0211@gmail.com" class="channel">✉️ henrychen0211@gmail.com</a>
+      <a href="https://line.me/ti/p/hanqing123" class="channel">💬 LINE: hanqing123</a>
+      <a href="#" class="channel">📍 查看位置</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div>
+    <a class="logo" href="#hero" style="margin-bottom:0.5rem;display:flex;">
+      <div class="logo-icon">🖨</div>
+      詠業科技行銷<span>有限公司</span>
+    </a>
+    <div class="footer-copy">© 2025 詠業科技行銷有限公司. 版權所有。</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">服務條款</a>
+    <a href="#">隱私政策</a>
+    <a href="#driver-support">疑難排解</a>
+    <a href="#contact">聯絡我們</a>
+  </div>
+</footer>
+
+<!-- FLOATING CTA -->
+<button class="floating-cta" title="LINE 客服" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">💬</button>
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+/* ── SITE SCRIPTS ── */
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  const open = links.style.display === 'flex';
+  if (open) { links.removeAttribute('style'); return; }
+  Object.assign(links.style, {
+    display:'flex', flexDirection:'column', position:'fixed',
+    top:'68px', left:'0', right:'0', zIndex:'998',
+    background:'rgba(10,15,30,0.97)', padding:'1.5rem 5vw',
+    gap:'1.2rem', borderBottom:'1px solid rgba(26,86,219,0.3)'
+  });
+}
+
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  nav.style.background = window.scrollY > 60
+    ? 'rgba(6,10,20,0.97)' : 'rgba(10,15,30,0.88)';
+});
+
+/* ── TROUBLESHOOTER ENGINE ── */
+const DRIVER_WIN = 'https://onyxweb.mykonicaminolta.com/OneStopProductSupport?appMode=public&productId=1622&categoryId=1&subCategoryId=ft0';
+const DRIVER_MAC = 'https://www.konicaminolta.eu/eu-en/support/download-centre';
+const DRIVER_OFFICIAL = 'https://onyxweb.mykonicaminolta.com/OneStopProductSupport?appMode=public&productId=1622';
+
+// ─── TREE DATA ───────────────────────────────────────
+const TREE = {
+
+  /* ══ 1. 無法列印 ══ */
+  'print-fail': {
+    tag: '無法列印', title: '電腦傳送列印後沒有反應',
+    desc: '請先確認機器電源正常，觸控螢幕有亮起。以下步驟可解決 90% 的無法列印問題。',
+    steps: [
+      { text: '確認機器電源已開啟，觸控螢幕顯示「準備就緒」。若畫面顯示錯誤代碼，請返回選擇「螢幕顯示錯誤代碼」。' },
+      { text: '檢查印表機與電腦的連線方式（USB 或網路），確認線材連接正常，或確認兩台設備在同一網路。' },
+      { text: '在電腦「控制台 → 裝置和印表機」中，確認 bizhub C364e 是否設定為「預設印表機」，並右鍵確認沒有被設定為「暫停」。' },
+      { text: '清除列印佇列：「裝置和印表機 → 查看列印工作」→ 取消所有等候中的工作，再重新傳送列印。', note: '若佇列中有卡住的工作，即使傳新的也不會印出。' },
+    ],
+    branch: { question: '執行以上步驟後，問題解決了嗎？',
+      yes: 'resolved', no: 'print-fail-2' }
+  },
+  'print-fail-2': {
+    tag: '無法列印 › 進階排查', title: '確認驅動程式與連線狀態',
+    desc: '基礎排查無效時，問題通常來自驅動程式損壞或 IP 位址變更。',
+    steps: [
+      { text: '在電腦開始功能表搜尋「服務」，找到「Print Spooler」，按右鍵→重新啟動。' },
+      { text: '確認印表機的 IP 位址沒有改變。在機器觸控螢幕上：「功能表 → 公用程式 → 機器資訊」可查看目前 IP。', note: '如果 IP 和驅動設定不符，電腦就找不到印表機。' },
+      { text: '嘗試刪除並重新新增印表機：「控制台 → 裝置和印表機 → 刪除此裝置」，再重新安裝驅動程式。' },
+    ],
+    branch: { question: '問題是否出在驅動程式上？',
+      yes: 'driver-install', no: 'print-fail-3' }
+  },
+  'print-fail-3': {
+    tag: '無法列印 › 需要協助', title: '可能需要技術人員介入',
+    desc: '若以上步驟均無效，可能是機器本身的硬體或網路設定問題，建議聯繫我們處理。',
+    steps: [
+      { text: '嘗試重新啟動機器：按住電源按鈕關機，等待 30 秒後再開機。' },
+      { text: '重新啟動電腦，再試一次列印。' },
+      { text: '如果仍然無效，請透過下方按鈕聯繫我們，提供您的機器 IP 位址與錯誤描述，我們將遠端或到府協助。' },
+    ],
+    resolved: false
+  },
+
+  /* ══ 2. 列印品質異常 ══ */
+  'print-quality': {
+    tag: '列印品質', title: '列印品質異常—請選擇症狀',
+    desc: '不同的品質問題來源不同，請選擇最接近您狀況的描述。',
+    branch: { question: '您遇到的是哪種問題？', type: 'multi',
+      options: [
+        { icon:'🌈', label:'顏色偏差 / 色彩不準確', next:'quality-color' },
+        { icon:'〰️', label:'出現條紋或線條', next:'quality-stripe' },
+        { icon:'🌫️', label:'列印模糊 / 褪色', next:'quality-faded' },
+        { icon:'⬛', label:'出現黑點或污漬', next:'quality-spots' },
+      ]
+    }
+  },
+  'quality-color': {
+    tag: '列印品質 › 顏色偏差', title: '顏色偏差或色彩不準確',
+    desc: '顏色不準通常是色彩校正或碳粉問題。請依序執行以下步驟。',
+    steps: [
+      { text: '在機器觸控螢幕執行色彩校正：「功能表 → 公用程式 → 調整 / 清潔 → 影像品質調整 → 自動調整」。' },
+      { text: '確認各色碳粉匣（C/M/Y/K）都已正確安裝，沒有鬆脫或安裝錯位置。', note: '黃色碳粉（Y）和洋紅色（M）位置容易搞混。' },
+      { text: '若問題僅在特定顏色，可能是該色顯影組件磨損，請聯繫我們更換。' },
+      { text: '確認列印設定中的色彩模式正確（彩色 vs. 黑白），並確認應用程式沒有套用錯誤的色彩設定檔。' },
+    ],
+    branch: { question: '校正後顏色是否改善？', yes: 'resolved', no: 'escalate' }
+  },
+  'quality-stripe': {
+    tag: '列印品質 › 條紋', title: '列印出現條紋或縱向線條',
+    desc: '條紋通常是碳粉或成像組件的問題。',
+    steps: [
+      { text: '取出並重新安裝出現條紋顏色對應的碳粉匣，輕輕水平搖晃後再裝回。', note: '碳粉不均勻分布可能造成條紋。' },
+      { text: '執行機器清潔程序：「功能表 → 公用程式 → 調整 / 清潔 → 清潔」，選擇「自動清潔」。' },
+      { text: '若清潔後仍有條紋，可能是感光鼓（Drum Unit）有刮痕，需要更換。請聯繫我們安排到府處理。' },
+    ],
+    branch: { question: '清潔後條紋是否消失？', yes: 'resolved', no: 'escalate' }
+  },
+  'quality-faded': {
+    tag: '列印品質 › 模糊褪色', title: '列印顏色淡或模糊不清',
+    desc: '列印偏淡通常是碳粉量不足或定影組件問題。',
+    steps: [
+      { text: '檢查碳粉量：觸控螢幕右上方的碳粉指示燈，確認各色碳粉還有足夠存量。' },
+      { text: '取出碳粉匣後輕輕搖晃，使剩餘碳粉重新分佈，再裝回試印。', note: '即使顯示「低碳粉」仍可繼續使用一段時間。' },
+      { text: '檢查紙張種類設定：確認驅動程式中的「紙張類型」與實際使用的紙張匹配（普通紙、厚紙等）。' },
+      { text: '若是雙面列印時第二面偏淡，這是定影器餘熱問題，屬正常現象；嚴重時需更換定影器，請聯繫我們。' },
+    ],
+    branch: { question: '是否是碳粉不足造成？', yes: 'toner-replace', no: 'escalate' }
+  },
+  'quality-spots': {
+    tag: '列印品質 › 污漬', title: '列印出現黑點或污漬',
+    desc: '污漬通常是機器內部有碳粉殘留或感光鼓問題。',
+    steps: [
+      { text: '執行機器內部清潔：「功能表 → 公用程式 → 調整 / 清潔 → 清潔 → 列印頭清潔」。' },
+      { text: '打開前蓋，使用機器附贈的清潔布輕輕擦拭紙張傳送路徑上可見的碳粉殘留。', note: '請勿用濕布，避免損傷元件。' },
+      { text: '確認使用的紙張品質符合規格，避免使用過潮或劣質紙張導致碳粉無法定著。' },
+      { text: '若污漬規律出現（固定間隔），通常是感光鼓表面受損，需更換感光鼓。請聯繫我們。' },
+    ],
+    branch: { question: '清潔後污漬是否消失？', yes: 'resolved', no: 'escalate' }
+  },
+
+  /* ══ 3. 卡紙 ══ */
+  'paper-jam': {
+    tag: '卡紙', title: '卡紙或進紙異常',
+    desc: '機器螢幕通常會顯示卡紙位置，請依圖示開啟對應的蓋板取出紙張。',
+    steps: [
+      { text: '機器螢幕會以動畫標示卡紙位置，請根據畫面指示開啟對應的側蓋或前蓋。', note: '強行拉出可能撕碎紙張殘留在機器內，請緩慢水平拉出。' },
+      { text: '完整取出卡住的紙張，確認沒有任何紙屑殘留（可用手電筒照射確認）。碎紙片殘留會造成再次卡紙。' },
+      { text: '關閉所有蓋板直到「喀噠」聲確認關好，機器才會繼續運作。' },
+      { text: '重新開啟紙匣，確認紙張整齊置放且沒有超過紙匣最大容量標示線，並確認紙張導引板貼合紙張邊緣。' },
+    ],
+    branch: { question: '取出卡紙後問題解決了嗎？',
+      yes: 'resolved', no: 'paper-jam-2' }
+  },
+  'paper-jam-2': {
+    tag: '卡紙 › 進階', title: '卡紙排除後仍然頻繁卡紙',
+    desc: '頻繁卡紙通常是紙張問題或進紙滾輪磨損。',
+    steps: [
+      { text: '更換紙張：確認使用 75~80g/m² 的標準影印紙，並確認紙張沒有受潮（受潮紙張容易黏連導致卡紙）。', note: '建議一次只裝約 300 張，避免裝太滿。' },
+      { text: '取出紙匣，用乾布擦拭進紙滾輪（橡膠滾輪）表面，去除灰塵與紙粉。' },
+      { text: '若頻繁從特定紙匣卡紙，可能是該紙匣的分紙墊片磨損，需更換配件。請聯繫我們。' },
+    ],
+    branch: { question: '問題是否仍持續？', yes: 'escalate', no: 'resolved' }
+  },
+
+  /* ══ 4. 掃描問題 ══ */
+  'scan-fail': {
+    tag: '掃描 / 複印', title: '掃描或複印問題',
+    desc: '請選擇您遇到的狀況。',
+    branch: { question: '您遇到的是哪種問題？', type: 'multi',
+      options: [
+        { icon:'📧', label:'掃描傳送到 Email / 資料夾失敗', next:'scan-email' },
+        { icon:'⬜', label:'複印出來是空白', next:'scan-blank' },
+        { icon:'📸', label:'掃描影像品質差', next:'scan-quality' },
+      ]
+    }
+  },
+  'scan-email': {
+    tag: '掃描 › 傳送失敗', title: '掃描無法傳送到 Email 或資料夾',
+    desc: '傳送失敗通常是網路設定或 Email 伺服器設定問題。',
+    steps: [
+      { text: '確認機器目前可以連上網路：觸控螢幕「功能表 → 公用程式 → 機器資訊」確認 IP 位址正確。' },
+      { text: '確認收件 Email 地址輸入無誤，且沒有誤觸到全形字元。機器上可能會顯示「傳送失敗」錯誤。' },
+      { text: '若傳送到資料夾（SMB）失敗，確認電腦共用資料夾的路徑、帳號與密碼沒有更改。Windows 更新有時會重設共用設定。', note: '路徑格式：\\\\電腦名稱\\資料夾名稱' },
+      { text: '若傳送到 Email 失敗，確認機器的 SMTP 伺服器設定正確。這通常需要由我們協助重新設定。' },
+    ],
+    branch: { question: '問題是否解決？', yes: 'resolved', no: 'escalate' }
+  },
+  'scan-blank': {
+    tag: '掃描 › 空白', title: '複印或掃描結果是空白的',
+    desc: '掃描出現空白，幾乎都是文件放置方式的問題。',
+    steps: [
+      { text: '確認原稿文字面朝下放在玻璃台上（面對玻璃），或放入自動進紙器（ADF）時文字面朝上。', note: '這是最常見原因！放反了就會掃到空白面。' },
+      { text: '清潔玻璃台：用柔軟的乾布或玻璃清潔布擦拭掃描玻璃表面，去除灰塵與指紋。' },
+      { text: '確認亮度設定沒有過高（太亮會讓淡色文字消失）：「掃描設定 → 濃度」調整為中間值。' },
+    ],
+    branch: { question: '調整後是否正常？', yes: 'resolved', no: 'escalate' }
+  },
+  'scan-quality': {
+    tag: '掃描 › 影像品質', title: '掃描影像模糊或有條紋',
+    desc: '掃描品質問題通常能透過清潔和設定調整解決。',
+    steps: [
+      { text: '清潔自動進紙器（ADF）玻璃條：打開 ADF 蓋板，可以看到一條細長玻璃，用乾布輕輕擦拭。', note: 'ADF 玻璃上的污漬會造成縱向黑線，非常常見。' },
+      { text: '清潔主要掃描玻璃台，確認表面無灰塵、指紋或碎屑。' },
+      { text: '提高掃描解析度：在掃描設定中將 DPI 調整為 300 或 600，可大幅改善清晰度。', note: '預設 200dpi 對文字類文件足夠，但照片或細字建議用 300dpi。' },
+    ],
+    branch: { question: '清潔後品質是否改善？', yes: 'resolved', no: 'escalate' }
+  },
+
+  /* ══ 5. 錯誤代碼 ══ */
+  'error-code': {
+    tag: '錯誤代碼', title: '螢幕顯示錯誤代碼',
+    desc: '請選擇螢幕上顯示的錯誤代碼類型。',
+    branch: { question: '螢幕顯示的是哪種代碼？', type: 'multi',
+      options: [
+        { icon:'📄', label:'J 開頭（如 J-xxx）', next:'error-j' },
+        { icon:'🔧', label:'C 開頭（如 C-xxxx）', next:'error-c' },
+        { icon:'🚨', label:'SC 開頭（如 SC-xxx）', next:'error-sc' },
+        { icon:'❓', label:'其他訊息或英文警告', next:'error-other' },
+      ]
+    }
+  },
+  'error-j': {
+    tag: '錯誤代碼 › J', title: 'J 代碼 — 卡紙錯誤',
+    desc: 'J 開頭的代碼代表卡紙，螢幕上的動畫會指示卡紙位置。',
+    steps: [
+      { text: '按照螢幕動畫圖示，開啟對應位置的蓋板（前蓋、側蓋、定影器蓋等）。' },
+      { text: '緩慢水平拉出卡住的紙張，切勿用力拉扯，確認沒有碎紙殘留。' },
+      { text: '關閉所有蓋板直到完全閉合，機器將自動重置錯誤代碼並恢復運作。' },
+    ],
+    branch: { question: '卡紙清除後代碼是否消失？', yes: 'resolved', no: 'paper-jam-2' }
+  },
+  'error-c': {
+    tag: '錯誤代碼 › C', title: 'C 代碼 — 零件或耗材警告',
+    desc: 'C 開頭代碼通常表示耗材（碳粉、廢粉盒）需要關注，部分代碼可自行處理。',
+    steps: [
+      { text: '記下完整代碼（如 C-0210），機器螢幕通常也會有文字說明問題所在。' },
+      { text: '常見可自行處理：C-0210（廢粉盒將滿）→ 聯繫我們補充；C-0501~C-0504（碳粉不足）→ 更換碳粉匣。' },
+      { text: '若代碼說明顯示「需要技術服務」或代碼在 C-2xxx 以上，通常需要更換顯影組件，請聯繫我們。' },
+    ],
+    branch: { question: '是否為碳粉或廢粉盒相關代碼？', yes: 'toner', no: 'escalate' }
+  },
+  'error-sc': {
+    tag: '錯誤代碼 › SC', title: 'SC 代碼 — 需要技術服務',
+    desc: 'SC 代碼代表機器偵測到內部硬體問題，通常需要專業技術人員處理。',
+    steps: [
+      { text: '請先嘗試重新開機：按住觸控螢幕右側電源按鈕關機，等待 60 秒，再重新開機。', note: '部分 SC 代碼是暫時性錯誤，重開機後可能消除。' },
+      { text: '記錄完整的 SC 代碼（如 SC-322 或 SC-543），這對技術人員診斷非常重要。' },
+      { text: '若重開機後代碼再次出現，請立即聯繫我們並提供代碼。SC 代碼通常無法自行排除，強行使用可能造成更大損壞。' },
+    ],
+    resolved: false
+  },
+  'error-other': {
+    tag: '錯誤代碼 › 其他', title: '其他警告訊息',
+    desc: '常見的英文警告訊息處理方式。',
+    steps: [
+      { text: '「Add Paper」：紙匣缺紙，補充紙張後按「繼續」。' },
+      { text: '「Memory Full」：列印資料太大，嘗試降低解析度或分批列印。' },
+      { text: '「Authentication Error」：帳號密碼錯誤，確認部門代碼設定。若不清楚密碼，聯繫我們重設。' },
+      { text: '「HDD Full」：機器儲存空間不足，進入「功能表 → 公用程式 → 資料管理」清理暫存資料。' },
+    ],
+    branch: { question: '問題是否解決？', yes: 'resolved', no: 'escalate' }
+  },
+
+  /* ══ 6. 碳粉 ══ */
+  'toner': {
+    tag: '碳粉 / 耗材', title: '碳粉或耗材問題',
+    desc: '請選擇您遇到的狀況。',
+    branch: { question: '您的問題是？', type: 'multi',
+      options: [
+        { icon:'⬛', label:'碳粉警告、需要補充', next:'toner-low' },
+        { icon:'🔄', label:'更換碳粉後警告仍在', next:'toner-replace' },
+        { icon:'🗑️', label:'廢粉盒警告', next:'toner-waste' },
+      ]
+    }
+  },
+  'toner-low': {
+    tag: '碳粉 › 補充', title: '碳粉不足警告',
+    desc: '碳粉低警告出現時，通常還可繼續列印約 100~300 張。以下說明更換步驟。',
+    steps: [
+      { text: '打開機器正面的前蓋（左側大蓋），找到對應顏色的碳粉匣（黑K、藍C、紅M、黃Y）。', note: '顏色標示在碳粉匣正面，確認更換正確顏色。' },
+      { text: '用雙手握住碳粉匣兩端，向外水平拉出。', },
+      { text: '取出新碳粉匣，先水平搖晃 5~6 次使碳粉均勻分布，再插入對應位置直到完全卡入。' },
+      { text: '關閉前蓋，機器會自動重置碳粉計數器並恢復正常。' },
+    ],
+    branch: { question: '更換後警告是否消除？', yes: 'resolved', no: 'toner-replace' }
+  },
+  'toner-replace': {
+    tag: '碳粉 › 更換後仍警告', title: '更換碳粉後警告訊息仍在',
+    desc: '更換碳粉後若警告仍存在，通常是計數器未重置或安裝不確實。',
+    steps: [
+      { text: '取出碳粉匣，確認安裝方向正確，再用力推入直到感覺到「卡入」聲。', note: '碳粉匣有方向性，標示朝外才是正確方向。' },
+      { text: '確認取出的是舊碳粉匣而非新的（新碳粉匣較重）。' },
+      { text: '嘗試手動重置：觸控螢幕「功能表 → 公用程式 → 計量器 → 碳粉更換計數重置」，選擇對應顏色進行重置。' },
+    ],
+    branch: { question: '重置後問題解決了嗎？', yes: 'resolved', no: 'escalate' }
+  },
+  'toner-waste': {
+    tag: '碳粉 › 廢粉盒', title: '廢粉盒（Waste Toner Box）警告',
+    desc: '廢粉盒收集列印過程中多餘的碳粉，需定期更換。',
+    steps: [
+      { text: '打開機器正面或側面的蓋板，找到廢粉盒（通常是一個長方形黑色容器，標示「Waste Toner」）。' },
+      { text: '取出廢粉盒時請垂直拿起，避免傾斜造成碳粉溢出。' },
+      { text: '裝入新廢粉盒，確認完全插入，關閉蓋板。機器將自動重置警告。', note: '若您沒有備用廢粉盒，請立即聯繫我們補貨，廢粉盒滿了機器將停止運作。' },
+    ],
+    branch: { question: '更換後警告消除了嗎？', yes: 'resolved', no: 'escalate' }
+  },
+
+  /* ══ 7. 網路連線 ══ */
+  'network': {
+    tag: '網路連線', title: '電腦找不到印表機或網路斷線',
+    desc: '網路問題分為兩種：電腦找不到印表機、或機器 IP 位址改變。',
+    steps: [
+      { text: '在機器觸控螢幕確認目前 IP：「功能表 → 公用程式 → 機器資訊 → TCP/IP 設定」。記下 IP 位址。' },
+      { text: '在電腦瀏覽器輸入機器 IP，若能開啟 Web 管理介面表示機器網路正常，問題在電腦驅動設定。' },
+      { text: '若 IP 已改變：前往「控制台 → 裝置和印表機 → 印表機屬性 → 連接埠」，更新 IP 位址為新的 IP。', note: '建議請管理員將機器 IP 設為固定，避免每次重開路由器後 IP 更換。' },
+      { text: '若機器完全連不上網路：確認 RJ-45 網路線插頭是否鬆脫，或嘗試重新插拔後重啟機器。' },
+    ],
+    branch: { question: '問題是否解決？', yes: 'resolved', no: 'network-2' }
+  },
+  'network-2': {
+    tag: '網路連線 › 進階', title: '設定固定 IP 或重新設定網路',
+    desc: '若要避免 IP 反覆變動，建議設定靜態 IP。',
+    steps: [
+      { text: '在機器觸控螢幕：「功能表 → 公用程式 → 網路 → TCP/IP 設定 → IP 位址設定方式」，改為「手動」。' },
+      { text: '輸入一個您網路環境中固定不衝突的 IP（通常是 192.168.1.xxx），以及正確的子網路遮罩和閘道器。', note: '若不確定網路設定，請告訴我們您的路由器型號，我們可以遠端協助。' },
+      { text: '儲存設定後重新啟動機器，再更新電腦驅動程式中對應的 IP 位址。' },
+    ],
+    branch: { question: '設定固定 IP 後問題解決？', yes: 'resolved', no: 'escalate' }
+  },
+
+  /* ══ 8. 驅動程式 ══ */
+  'driver-install': {
+    tag: '驅動程式', title: '下載與安裝 bizhub C364e 驅動程式',
+    desc: '請選擇您的電腦作業系統，系統將為您提供正確的下載連結。',
+    isDriver: true
+  },
+
+  /* ══ 通用結局節點 ══ */
+  'resolved': {
+    tag: '完成', title: '問題已解決 🎉', resolved: true
+  },
+  'escalate': {
+    tag: '需要協助', title: '建議聯繫技術支援',
+    desc: '此問題需要我們的技術人員進一步診斷，請透過下方任一管道聯繫我們，說明您的問題描述及已嘗試的步驟，我們將盡快安排遠端或到府服務。',
+    resolved: false
+  },
+};
+
+// ─── STATE ───────────────────────────────────────────
+let tsHistory = [];
+let tsSelectedOS = null;
+
+// ─── DRIVER OS DATA ──────────────────────────────────
+const DRIVER_OS = [
+  { id:'win11', icon:'🪟', name:'Windows 11', ver:'64-bit', url: DRIVER_WIN },
+  { id:'win10', icon:'🪟', name:'Windows 10', ver:'32/64-bit', url: DRIVER_WIN },
+  { id:'win8',  icon:'🪟', name:'Windows 8/8.1', ver:'32/64-bit', url: DRIVER_WIN },
+  { id:'win7',  icon:'🪟', name:'Windows 7', ver:'32/64-bit', url: DRIVER_WIN },
+  { id:'mac',   icon:'🍎', name:'macOS', ver:'全版本', url: DRIVER_MAC },
+];
+
+// ─── CORE FUNCTIONS ──────────────────────────────────
+function showNode(id) {
+  const node = TREE[id];
+  if (!node) return;
+
+  tsHistory.push(id);
+  tsSelectedOS = null;
+
+  // Switch panels
+  document.getElementById('ts-home').classList.remove('active');
+  document.getElementById('ts-flow').style.display = 'block';
+
+  // Build breadcrumb
+  const crumb = document.getElementById('ts-breadcrumb');
+  const parts = buildBreadcrumb();
+  crumb.innerHTML = parts.map(p => `<span>${p}</span>`).join('');
+
+  // Render content
+  const cont = document.getElementById('ts-node-content');
+  cont.innerHTML = renderNode(id, node);
+
+  document.getElementById('driver-support').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function buildBreadcrumb() {
+  const crumbs = ['bizhub C364e 疑難排解'];
+  for (const id of tsHistory) {
+    const n = TREE[id];
+    if (n && n.tag) crumbs.push(n.tag);
+  }
+  return [...new Set(crumbs)];
+}
+
+function renderNode(id, node) {
+  // ── Resolved ──
+  if (id === 'resolved' || node.resolved === true) {
+    return `
+      <div class="resolved-banner">
+        <div class="resolved-icon">✅</div>
+        <div class="resolved-title">問題已成功解決！</div>
+        <div class="resolved-sub">很高興能幫到您。如果日後遇到其他問題，隨時回來查詢。</div>
+      </div>`;
+  }
+
+  // ── Driver install ──
+  if (node.isDriver) {
+    return renderDriverCard();
+  }
+
+  // ── Escalate / No resolve ──
+  if (node.resolved === false) {
+    return `
+      <div class="node-card">
+        <div class="node-tag">${node.tag}</div>
+        <div class="node-title">${node.title}</div>
+        <p class="node-desc">${node.desc || '此問題需要技術人員介入，請透過下方管道聯繫我們。'}</p>
+        ${node.steps ? renderSteps(node.steps) : ''}
+        <div class="warn-box">⚠️ 若自行繼續操作可能造成額外損壞，建議等待專業人員處理。</div>
+      </div>`;
+  }
+
+  // ── Normal node with steps ──
+  let html = `<div class="node-card">
+    <div class="node-tag">${node.tag}</div>
+    <div class="node-title">${node.title}</div>
+    <p class="node-desc">${node.desc || ''}</p>
+    ${node.steps ? renderSteps(node.steps) : ''}`;
+
+  // ── Branch question ──
+  if (node.branch) {
+    const b = node.branch;
+    if (b.type === 'multi') {
+      html += `<div class="branch-title">🔀 ${b.question}</div>
+        <div class="branch-grid">
+          ${b.options.map(o => `
+            <button class="branch-btn" onclick="showNode('${o.next}')">
+              <span class="branch-icon">${o.icon}</span>${o.label}
+            </button>`).join('')}
+        </div>`;
+    } else {
+      html += `<div class="branch-title">🔀 ${b.question}</div>
+        <div class="branch-grid">
+          <button class="branch-btn" onclick="showNode('${b.yes}')">
+            <span class="branch-icon">✅</span>是，問題解決了
+          </button>
+          <button class="branch-btn" onclick="showNode('${b.no}')">
+            <span class="branch-icon">❌</span>否，問題仍然存在
+          </button>
+        </div>`;
+    }
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function renderSteps(steps) {
+  return `<ol class="step-list">
+    ${steps.map(s => `<li>${s.text}${s.note ? `<span class="step-note">💡 ${s.note}</span>` : ''}</li>`).join('')}
+  </ol>`;
+}
+
+function renderDriverCard() {
+  return `
+    <div class="driver-card">
+      <div class="driver-card-title">💾 bizhub C364e 驅動程式下載</div>
+      <div class="driver-card-sub">請選擇您的作業系統，再點擊「前往下載」，頁面將直接跳轉至 Konica Minolta 官方下載頁面。</div>
+      <div class="driver-os-grid" id="driver-os-grid">
+        ${DRIVER_OS.map(o => `
+          <button class="driver-os-btn" id="dos-${o.id}" onclick="selectDriverOS('${o.id}','${o.url}',this)">
+            <div class="d-os-icon">${o.icon}</div>
+            <div class="d-os-name">${o.name}</div>
+            <div class="d-os-ver">${o.ver}</div>
+          </button>`).join('')}
+      </div>
+      <div>
+        <button class="dl-btn" id="dl-go" disabled onclick="goDownload()">⬇️ 前往官方下載頁面</button>
+        <a class="dl-btn-ghost" href="${DRIVER_OFFICIAL}" target="_blank">📋 查看所有支援文件</a>
+      </div>
+    </div>
+    <div class="node-card" style="margin-top:14px;">
+      <div class="node-tag">安裝說明</div>
+      <div class="node-title" style="font-size:1rem;">驅動安裝後完成設定</div>
+      <ol class="step-list">
+        <li>下載完成後執行安裝檔，依精靈指示選擇「網路安裝」並輸入機器 IP 位址。<span class="step-note">💡 IP 查詢方式：機器觸控螢幕 → 功能表 → 公用程式 → 機器資訊</span></li>
+        <li>安裝完成後重新啟動電腦，再嘗試從 Word 或 PDF 列印一頁測試頁。</li>
+        <li>若列印成功，表示安裝完成！若無法列印，請返回選擇「無法列印」進行排查。</li>
+      </ol>
+    </div>`;
+}
+
+function selectDriverOS(id, url, el) {
+  document.querySelectorAll('.driver-os-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  tsSelectedOS = url;
+  const btn = document.getElementById('dl-go');
+  btn.disabled = false;
+}
+
+function goDownload() {
+  if (tsSelectedOS) window.open(tsSelectedOS, '_blank');
+}
+
+function tsBack() {
+  if (tsHistory.length <= 1) {
+    tsRestart();
+    return;
+  }
+  tsHistory.pop();
+  const prev = tsHistory[tsHistory.length - 1];
+  tsHistory.pop();
+  showNode(prev);
+}
+
+function tsRestart() {
+  tsHistory = [];
+  tsSelectedOS = null;
+  document.getElementById('ts-home').classList.add('active');
+  document.getElementById('ts-flow').style.display = 'none';
+  document.getElementById('driver-support').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
