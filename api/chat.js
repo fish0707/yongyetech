@@ -6,9 +6,9 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error('OPENAI_API_KEY is not set');
+    console.error('ANTHROPIC_API_KEY is not set');
     return res.status(500).json({ error: 'API key not configured' });
   }
 
@@ -18,19 +18,17 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1000,
-        messages: [
-          {
-            role: 'system',
-            content: `你是「詠業科技行銷有限公司」的專業 AI 客服助理。
+        system: `你是「詠業科技行銷有限公司」的專業 AI 客服助理。
 
 公司概況：
 - 台中在地印表機租賃專家，深耕10年，200+企業客戶
@@ -50,21 +48,19 @@ module.exports = async function handler(req, res) {
 - 如果問題與公司業務完全無關，請回覆：【超出範圍】然後說明只能回答印表機租賃相關問題
 - 如果遇到複雜客訴、合約糾紛、或需要人工判斷，請回覆：【需要真人】然後說明原因
 - 如果詢問報價，提供大概方向並引導聯繫
-- 不要編造不確定的資訊`
-          },
-          ...messages
-        ],
+- 不要編造不確定的資訊`,
+        messages: messages,
       }),
     });
 
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('OpenAI API error:', JSON.stringify(data));
-      return res.status(500).json({ error: data.error?.message || 'OpenAI API error' });
+      console.error('Anthropic API error:', JSON.stringify(data));
+      return res.status(500).json({ error: data.error?.message || 'Anthropic API error' });
     }
 
-    const reply = data.choices?.[0]?.message?.content || '';
+    const reply = data.content?.[0]?.text || '';
     return res.status(200).json({ reply });
 
   } catch (error) {
