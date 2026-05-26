@@ -6,9 +6,9 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error('GEMINI_API_KEY is not set');
+    console.error('ANTHROPIC_API_KEY is not set');
     return res.status(500).json({ error: 'API key not configured' });
   }
 
@@ -17,7 +17,18 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid messages format' });
   }
 
-  const SYSTEM_PROMPT = `你是「詠業科技行銷有限公司」的專業 AI 客服助理。
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1000,
+        system: `你是「詠業科技行銷有限公司」的專業 AI 客服助理。
 
 公司概況：
 - 台中在地印表機租賃專家，深耕10年，200+企業客戶
@@ -37,42 +48,19 @@ module.exports = async function handler(req, res) {
 - 如果問題與公司業務完全無關，請回覆：【超出範圍】然後說明只能回答印表機租賃相關問題
 - 如果遇到複雜客訴、合約糾紛、或需要人工判斷，請回覆：【需要真人】然後說明原因
 - 如果詢問報價，提供大概方向並引導聯繫
-- 不要編造不確定的資訊`;
-
-  try {
-    // 把 messages 轉成 Gemini 格式
-    // Gemini 用 "user" / "model" 而不是 "user" / "assistant"
-    const geminiContents = messages.map(m => ({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }]
-    }));
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system_instruction: {
-            parts: [{ text: SYSTEM_PROMPT }]
-          },
-          contents: geminiContents,
-          generationConfig: {
-            maxOutputTokens: 1000,
-            temperature: 0.7,
-          }
-        }),
-      }
-    );
+- 不要編造不確定的資訊`,
+        messages: messages,
+      }),
+    });
 
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('Gemini API error:', JSON.stringify(data));
-      return res.status(500).json({ error: data.error?.message || 'Gemini API error' });
+      console.error('Anthropic API error:', JSON.stringify(data));
+      return res.status(500).json({ error: data.error?.message || 'Anthropic API error' });
     }
 
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const reply = data.content?.[0]?.text || '';
     return res.status(200).json({ reply });
 
   } catch (error) {
