@@ -1026,6 +1026,29 @@
       position: absolute; inset: 0;
       background: linear-gradient(90deg, rgba(240,250,244,0.3) 0%, transparent 40%);
     }
+
+    /* ── Handoff card (轉接真人) ── */
+    .handoff-card {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7) !important;
+      border: 1.5px solid #86efac !important;
+      border-radius: 14px !important;
+      padding: 16px !important;
+      text-align: center;
+    }
+    .handoff-icon { font-size: 2rem; margin-bottom: 6px; }
+    .handoff-title { font-weight: 800; color: #14532d; font-size: 0.95rem; margin-bottom: 4px; }
+    .handoff-reason { font-size: 0.78rem; color: #166534; margin-bottom: 14px; line-height: 1.5; }
+    .handoff-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: #06c755; color: #fff;
+      padding: 9px 18px; border-radius: 100px;
+      font-size: 0.85rem; font-weight: 700;
+      text-decoration: none; margin-bottom: 10px;
+      transition: background 0.2s;
+    }
+    .handoff-btn:hover { background: #05a847; }
+    .handoff-alt { font-size: 0.74rem; color: #166534; }
+    .handoff-alt a { color: #15803d; font-weight: 700; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -1792,32 +1815,12 @@ let chatOpen = false;
 let chatHistory = [];
 let isBotTyping = false;
 
-const SYSTEM_PROMPT = `你是「詠業科技行銷有限公司」的專業 AI 客服助理。
-公司概況：
-- 台中在地印表機租賃專家，深耕10年，200+企業客戶
-- 主要服務：黑白/彩色印表機租賃、多功能事務機出租、定期保養維修、碳粉耗材補送
-- 服務範圍：台中市全區
-- 聯絡方式：電話 0926-554511、Email henrychen0211@gmail.com、LINE: @unz7281h
-
-方案資訊：
-1. 基本方案：$2,500/月起，12個月起，黑白印表機×1，月5000張，年保養×1，48H維修
-2. 商務方案：$5,800/月起，黑白+彩色各1台，月15000張，月送碳粉，24H到府維修
-3. 企業旗艦：依需求客製，多台多功能事務機，無限量列印，4H緊急維修
-
-回答規則：
-- 用親切、專業的繁體中文回答（台灣口語）
-- 回答簡短精確，不要超過150字
-- 如果詢問報價，提供大概方向並引導聯繫
-- 如果詢問技術問題，提供簡單步驟並建議使用網頁疑難排解功能
-- 適時推薦客戶填寫諮詢表單或撥打電話
-- 不要編造不確定的資訊，有疑問就說「建議直接聯繫我們確認」`;
+const LINE_URL = 'https://line.me/ti/p/%40unz7281h';
 
 function toggleChat() {
   chatOpen = !chatOpen;
   document.getElementById('ai-chat-window').classList.toggle('open', chatOpen);
-  if (chatOpen) {
-    setTimeout(() => document.getElementById('chat-input').focus(), 300);
-  }
+  if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
 }
 
 function sendQuick(text) {
@@ -1831,10 +1834,7 @@ function autoResizeTextarea(el) {
 }
 
 function handleChatKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendMessage();
-  }
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
 }
 
 function getTime() {
@@ -1846,6 +1846,27 @@ function appendMessage(role, text) {
   const div = document.createElement('div');
   div.className = `msg ${role}`;
   div.innerHTML = `<div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div><div class="msg-time">${getTime()}</div>`;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+// 顯示轉接真人的卡片
+function appendHandoffCard(reason) {
+  const container = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.innerHTML = `
+    <div class="msg-bubble handoff-card">
+      <div class="handoff-icon">👨‍💼</div>
+      <div class="handoff-title">為您轉接真人客服</div>
+      <div class="handoff-reason">${reason}</div>
+      <a href="${LINE_URL}" target="_blank" class="handoff-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        開啟 LINE 官方帳號
+      </a>
+      <div class="handoff-alt">或撥打 <a href="tel:0926554511">0926-554511</a></div>
+    </div>
+    <div class="msg-time">${getTime()}</div>`;
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
 }
@@ -1883,27 +1904,36 @@ async function sendMessage() {
   showTyping();
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: chatHistory
-      })
+      body: JSON.stringify({ messages: chatHistory })
     });
 
-    const data = await res.json();
     removeTyping();
 
-    const reply = data.content?.[0]?.text || '抱歉，目前無法回應，請直接撥打電話 0926-554511 或傳送 LINE 訊息給我們。';
-    chatHistory.push({ role: 'assistant', content: reply });
-    appendMessage('bot', reply);
+    if (!res.ok) throw new Error('API error');
+
+    const data = await res.json();
+    const reply = data.reply || '';
+
+    // 判斷是否需要轉接真人
+    if (reply.startsWith('【需要真人】')) {
+      const reason = reply.replace('【需要真人】', '').trim();
+      chatHistory.push({ role: 'assistant', content: reply });
+      appendHandoffCard(reason || '您的問題需要專人協助處理');
+    } else if (reply.startsWith('【超出範圍】')) {
+      const reason = reply.replace('【超出範圍】', '').trim();
+      chatHistory.push({ role: 'assistant', content: reply });
+      appendMessage('bot', reason || '抱歉，我只能回答印表機租賃相關問題，其他問題請透過電話或 LINE 聯繫我們。');
+    } else {
+      chatHistory.push({ role: 'assistant', content: reply });
+      appendMessage('bot', reply);
+    }
 
   } catch (err) {
     removeTyping();
-    appendMessage('bot', '抱歉，連線發生問題。請直接聯繫我們：\n📞 0926-554511\n💬 LINE: @unz7281h');
+    appendHandoffCard('目前 AI 客服暫時無法使用，請透過以下方式聯繫真人客服');
   }
 
   isBotTyping = false;
