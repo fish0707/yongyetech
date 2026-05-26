@@ -332,42 +332,57 @@
     @media(max-width:600px){ .services-grid { grid-template-columns: 1fr; } }
 
     .svc-card {
-      background: var(--card-bg);
-      transition: box-shadow 0.3s, transform 0.3s;
       position: relative; overflow: hidden;
-      cursor: default;
-      display: flex; flex-direction: column;
+      cursor: default; aspect-ratio: 4/3;
+      background: #1a2e1e;
     }
-    .svc-card:hover { box-shadow: 0 8px 32px rgba(45,158,95,0.12); transform: translateY(-3px); }
-    .svc-card:hover .svc-img img { transform: scale(1.05); filter: brightness(0.88) saturate(1.1); }
-
-    /* image area */
+    /* 背景圖片 */
     .svc-img {
-      width: 100%; aspect-ratio: 16/9; overflow: hidden;
-      background: #e0f2e9; flex-shrink: 0;
+      position: absolute; inset: 0;
     }
     .svc-img img {
       width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(0.92) saturate(0.95);
-      transition: transform 0.5s ease, filter 0.4s ease;
+      filter: brightness(0.45) saturate(0.8);
+      transition: filter 0.5s ease, transform 0.6s ease;
     }
-
-    /* text area */
+    .svc-card:hover .svc-img img {
+      filter: brightness(0.35) saturate(0.7);
+      transform: scale(1.05);
+    }
+    /* 底部漸層遮罩 */
+    .svc-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,30,15,0.85) 0%, rgba(10,30,15,0.3) 55%, transparent 100%);
+      pointer-events: none; z-index: 1;
+    }
+    /* 文字區塊：疊在圖片上 */
     .svc-body {
-      padding: 1.5rem 1.6rem 1.8rem;
-      flex: 1; display: flex; flex-direction: column;
+      position: absolute; inset: 0; z-index: 2;
+      padding: 1.6rem 1.8rem;
+      display: flex; flex-direction: column; justify-content: flex-end;
     }
     .svc-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700;
-      color: rgba(45,158,95,0.2); line-height: 1; margin-bottom: 0.6rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700;
+      color: rgba(255,255,255,0.25); line-height: 1; margin-bottom: 0.5rem;
     }
     .svc-icon {
-      width: 44px; height: 44px; border-radius: 10px; margin-bottom: 0.9rem;
-      background: rgba(45,158,95,0.1); border: 1px solid rgba(45,158,95,0.2);
+      width: 40px; height: 40px; border-radius: 9px; margin-bottom: 0.8rem;
+      background: rgba(45,158,95,0.35); border: 1px solid rgba(109,212,154,0.4);
       display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
     }
-    .svc-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.45rem; color: var(--ls-text); }
-    .svc-desc { font-size: 0.83rem; color: var(--smoke); line-height: 1.75; }
+    .svc-svg { color: #fff; stroke: #fff; }
+    .svc-name {
+      font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem;
+      color: #ffffff;
+    }
+    .svc-desc {
+      font-size: 0.82rem; color: rgba(255,255,255,0.72); line-height: 1.7;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+    .svc-card:hover .svc-desc { max-height: 80px; opacity: 1; }
 
     /* ═══════════════════════
        PHOTO SHOWCASE
