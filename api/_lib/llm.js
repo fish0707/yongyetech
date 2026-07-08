@@ -36,7 +36,9 @@ async function callLLM({ messages, systemPrompt }) {
       body: JSON.stringify({
         model,
         messages: [{ role: 'system', content: systemPrompt }, ...messages],
-        max_tokens: 1024,
+        // system prompt 已限制回答不超過 150 字（約 250 tokens）。
+        // 供應商依 prompt + max_tokens 計算配額，設太大會白白吃掉每分鐘的 token 額度。
+        max_tokens: 400,
         temperature: 0.3,
       }),
       signal: controller.signal,

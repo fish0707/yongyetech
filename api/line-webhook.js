@@ -112,7 +112,12 @@ module.exports = async function handler(req, res) {
 
   const events = Array.isArray(body.events) ? body.events : [];
   // 只在有文字事件時才載入知識庫；多個事件共用同一份 system prompt。
-  const systemPromptPromise = getSystemPrompt();
+  // 沒有文字事件時不可呼叫 getSystemPrompt()：沒有人會 await 它，一旦 reject
+  // 就是 unhandled rejection，會讓 Node 行程直接結束（exit 128）。
+  const hasTextEvent = events.some(
+    ev => ev.type === 'message' && ev.message && ev.message.type === 'text'
+  );
+  const systemPromptPromise = hasTextEvent ? getSystemPrompt() : null;
 
   try {
     await Promise.all(events.map(ev => handleEvent(ev, systemPromptPromise, accessToken)));
